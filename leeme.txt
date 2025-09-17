@@ -1,0 +1,4 @@
+https://tailwindcss.com/
+
+// Para los componentes usamos la biblioteca
+https://ui.shadcn.com/
