@@ -26,6 +26,7 @@ import { toast } from "sonner";
 
 const LoginPage = () => {
   const { loading, login } = useAuthAction();
+
   const form = useForm<LoginZodSchemaType>({
     resolver: zodResolver(loginZodSchema),
     defaultValues: {
