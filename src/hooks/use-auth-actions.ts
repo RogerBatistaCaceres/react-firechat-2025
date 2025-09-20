@@ -20,6 +20,7 @@ interface AuthActionResponse {
 export const useAuthAction = () => {
   const [loading, setLoading] = useState(false);
   const auth = useAuth();
+
   // Esto quiere decir que el login devuelve una promesa del tipo, declarado anteriormente: AuthActionResponse
   const login = async (data: {
     email: string;
@@ -59,6 +60,8 @@ export const useAuthAction = () => {
         await updateProfile(currentUser.user, {
           displayName: data.displayName,
         });
+        // Forzar la recarga del usuario para que los cambios en el perfil se reflejen inmediatamente
+        await currentUser.user.reload();
       }
       return {
         success: true,

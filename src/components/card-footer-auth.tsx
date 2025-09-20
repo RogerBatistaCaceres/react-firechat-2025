@@ -1,6 +1,6 @@
 import { toast } from "sonner";
-import { Button } from "./button";
-import { CardFooter } from "./card";
+import { Button } from "./ui/button";
+import { CardFooter } from "./ui/card";
 import { useAuthAction } from "@/hooks/use-auth-actions";
 // esto es una libreria de iconos
 import { Mail } from "lucide-react";
