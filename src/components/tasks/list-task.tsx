@@ -6,7 +6,16 @@ const ListTask = () => {
   return (
     <div className="space-y-4 mt-4">
       {tasks.map((task) => (
-        <ItemTask key={task.id} task={task} />
+        // Ensure task has all required properties for Task type
+        <ItemTask
+          key={task.id}
+          task={{
+            ...task,
+            title: task.title ?? "",
+            completed: task.completed ?? false,
+            userId: task.userId ?? "",
+          }}
+        />
       ))}
     </div>
   );
