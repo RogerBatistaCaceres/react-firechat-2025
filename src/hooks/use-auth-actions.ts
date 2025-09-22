@@ -10,7 +10,8 @@ import {
 import type { AuthError } from "firebase/auth";
 
 import { useState } from "react";
-import { useAuth } from "reactfire";
+import { useAuth, useUser } from "reactfire";
+import { useUserActions } from "./use-user-actions";
 
 interface AuthActionResponse {
   success: boolean;
@@ -20,6 +21,8 @@ interface AuthActionResponse {
 export const useAuthAction = () => {
   const [loading, setLoading] = useState(false);
   const auth = useAuth();
+
+  const { createOrUpdateUser } = useUserActions();
 
   // Esto quiere decir que el login devuelve una promesa del tipo, declarado anteriormente: AuthActionResponse
   const login = async (data: {
@@ -60,6 +63,8 @@ export const useAuthAction = () => {
         await updateProfile(currentUser.user, {
           displayName: data.displayName,
         });
+        // para guardar el usuario en firestore
+        await createOrUpdateUser(currentUser.user);
         // Forzar la recarga del usuario para que los cambios en el perfil se reflejen inmediatamente
         await currentUser.user.reload();
       }
@@ -82,7 +87,10 @@ export const useAuthAction = () => {
     setLoading(true);
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      const data = await signInWithPopup(auth, provider);
+
+      await createOrUpdateUser(data.user);
+
       return {
         success: true,
         error: null,
