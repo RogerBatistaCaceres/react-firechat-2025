@@ -1,8 +1,5 @@
-import { useFriendInfo } from "@/hooks/use-friend-info";
 import type { Message } from "@/schemas/room.schemas";
-import { data } from "react-router";
 import { useUser } from "reactfire";
-import { is } from "zod/v4/locales";
 import FriendEmail from "./friend-email";
 import { cn } from "@/lib/utils";
 import { Suspense } from "react";
