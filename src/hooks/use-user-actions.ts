@@ -1,5 +1,5 @@
 // Esto es para almacenar los usuarios en firestore
-import type { UserFirestore } from "@/schemas/user.shemas";
+import type { UserFirestore } from "@/schemas/user.shema";
 import type { User } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useFirestore } from "reactfire";

@@ -45,3 +45,12 @@ export const taskZodSchema = z.object({
     .optional(),
 });
 export type TaskZodSchemaType = z.infer<typeof taskZodSchema>;
+
+export const messageZodSchema = z.object({
+  text: z
+    .string()
+    .trim()
+    .min(1, "Message must be at least 1 character long")
+    .max(1000, "Message must be at most 1000 characters long"),
+});
+export type MessageZodSchemaType = z.infer<typeof messageZodSchema>;
