@@ -54,3 +54,8 @@ export const messageZodSchema = z.object({
     .max(1000, "Message must be at most 1000 characters long"),
 });
 export type MessageZodSchemaType = z.infer<typeof messageZodSchema>;
+
+export const emailFriendZodSchema = z.object({
+  email: z.string().trim().pipe(z.email("invalid email format")),
+});
+export type EmailFriendZodSchemaType = z.infer<typeof emailFriendZodSchema>;

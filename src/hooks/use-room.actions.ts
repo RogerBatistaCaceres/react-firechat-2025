@@ -29,7 +29,7 @@ export const useRoomActions = () => {
   // Buscar un user por email
 
   const searchUserWithEmail = async (email: string) => {
-    const userRef = collection(db, "user");
+    const userRef = collection(db, "users");
     const q = query(userRef, where("email", "==", email));
     const querySnapshot = await getDocs(q);
     if (querySnapshot.empty) {
@@ -51,7 +51,7 @@ export const useRoomActions = () => {
       return {
         success: false,
         message: "400 error, you cant chat with yourself",
-        roomIs: null,
+        roomId: null,
       };
     }
     const friend = await searchUserWithEmail(friendEmail);
@@ -59,7 +59,7 @@ export const useRoomActions = () => {
       return {
         success: false,
         message: "400 error, friend is not available",
-        roomIs: null,
+        roomId: null,
       };
 
     // nos traemos el objeto de todas nuestras salas solo las que hemos creado
@@ -73,7 +73,7 @@ export const useRoomActions = () => {
       return {
         success: true,
         message: "200 Sala encontrada",
-        roomIs: existRoom.id,
+        roomId: existRoom.id,
       };
     const newRoom: Omit<Room, "id"> = {
       createdAt: serverTimestamp(),
@@ -87,7 +87,7 @@ export const useRoomActions = () => {
     return {
       success: true,
       message: "200 room successfully created",
-      roomIs: document.id,
+      roomId: document.id,
     };
   };
 
