@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { useTransition } from "react";
 import { useRoomActions } from "@/hooks/use-room.actions";
+import { Search, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 interface Props {
@@ -47,7 +48,7 @@ const FormSearchFriend = ({ handleClickRoomId }: Props) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
         <FormField
           control={form.control}
           name="email"
@@ -62,11 +63,21 @@ const FormSearchFriend = ({ handleClickRoomId }: Props) => {
         />
         <Button
           type="submit"
-          variant={"outline"}
-          className="w-full"
+          variant={"secondary"}
+          className="w-full gap-2"
           disabled={isLoading}
         >
-          {isLoading ? "Searching for friend..." : "Search for a friend"}
+          {isLoading ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Searching...
+            </>
+          ) : (
+            <>
+              <Search className="h-4 w-4" />
+              Search for a friend
+            </>
+          )}
         </Button>
       </form>
     </Form>

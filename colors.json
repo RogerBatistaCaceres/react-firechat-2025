@@ -1,0 +1,47 @@
+{
+  "theme": {
+    "primary": {
+      "DEFAULT": "#3B82F6",
+      "foreground": "#FFFFFF",
+      "hover": "#2563EB"
+    },
+    "secondary": {
+      "DEFAULT": "#6B7280",
+      "foreground": "#FFFFFF",
+      "hover": "#4B5563"
+    },
+    "accent": {
+      "DEFAULT": "#8B5CF6",
+      "foreground": "#FFFFFF",
+      "hover": "#7C3AED"
+    },
+    "background": {
+      "DEFAULT": "#FFFFFF",
+      "secondary": "#F9FAFB"
+    },
+    "foreground": {
+      "DEFAULT": "#111827",
+      "secondary": "#4B5563",
+      "muted": "#6B7280"
+    },
+    "border": {
+      "DEFAULT": "#E5E7EB",
+      "hover": "#D1D5DB"
+    },
+    "muted": {
+      "DEFAULT": "#F3F4F6",
+      "foreground": "#6B7280",
+      "hover": "#E5E7EB"
+    },
+    "chat": {
+      "sent": {
+        "bg": "#3B82F6",
+        "text": "#FFFFFF"
+      },
+      "received": {
+        "bg": "#F3F4F6",
+        "text": "#111827"
+      }
+    }
+  }
+}

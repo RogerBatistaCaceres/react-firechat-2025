@@ -1,5 +1,4 @@
 import Navbar from "@/components/navbar";
-import { Divide } from "lucide-react";
 import { Suspense } from "react";
 import { Navigate, Outlet } from "react-router";
 import { useSigninCheck, useUser } from "reactfire";
@@ -15,7 +14,11 @@ const AdminLayout = () => {
 
   // Mostrar Loading mientras se verifica el estado de inicio de sesion
   if (status === "loading" || !hasEmitted) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+      </div>
+    );
   }
 
   // Redirigir si el usuario no está autenticado
@@ -36,11 +39,11 @@ const AuthenticatedLayout = () => {
     suspense: true,
   }); // forzar la suscripción al usuario
   return (
-    <div>
+    <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
-      <div className="container mx-auto p-4">
+      <main className="flex-1 container mx-auto p-4 max-w-7xl">
         <Outlet />
-      </div>
+      </main>
     </div>
   );
 };

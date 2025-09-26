@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { useMessagesActions } from "@/hooks/use-messages-actions";
+import { Send } from "lucide-react";
 import { useTransition } from "react";
 
 interface Props {
@@ -62,8 +63,17 @@ const FormMessageChat = ({ roomId }: Props) => {
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? "..." : "Send"}
+        <Button
+          type="submit"
+          disabled={isLoading}
+          size="icon"
+          className="h-10 w-10"
+        >
+          {isLoading ? (
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary-foreground border-t-transparent" />
+          ) : (
+            <Send className="h-4 w-4" />
+          )}
         </Button>
       </form>
     </Form>

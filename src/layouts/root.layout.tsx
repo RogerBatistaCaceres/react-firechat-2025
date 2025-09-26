@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 const RootLayout = () => {
   return (
-    <div>
+    <div className="min-h-screen bg-background">
       <Outlet />
       <Toaster position="top-right" richColors />
     </div>
