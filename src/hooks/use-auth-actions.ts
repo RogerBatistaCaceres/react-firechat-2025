@@ -110,6 +110,10 @@ export const useAuthAction = () => {
     setLoading(true);
     try {
       await signOut(auth);
+
+      // Esto hace un reload, y nos asegura que todos los estados se reinician
+      window.location.href = "/auth/login";
+
       return {
         success: true,
         error: null,
