@@ -1,5 +1,12 @@
 import type { Room } from "@/schemas/room.schemas";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  serverTimestamp,
+  where,
+} from "firebase/firestore";
 import { useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
 
 export const useRoomActions = () => {
@@ -33,5 +40,56 @@ export const useRoomActions = () => {
     return doc.data();
   };
 
-  return { rooms: rooms as Room[] };
+  const findOrCreateRoom = async (friendEmail: string) => {
+    if (!user)
+      return {
+        success: false,
+        message: "401 no autorizado",
+        roomId: null,
+      };
+    if (user.email === friendEmail) {
+      return {
+        success: false,
+        message: "400 error, you cant chat with yourself",
+        roomIs: null,
+      };
+    }
+    const friend = await searchUserWithEmail(friendEmail);
+    if (!friend)
+      return {
+        success: false,
+        message: "400 error, friend is not available",
+        roomIs: null,
+      };
+
+    // nos traemos el objeto de todas nuestras salas solo las que hemos creado
+    // y dentro de la sala buscamos dentro del arreglo participantes
+    // si el uid del participante corresponde con el del friend
+    // si eso es correcto me devuelve esa información.
+    const existRoom = rooms.find((room) =>
+      room.participants.find((uid: string) => uid === friend.uid)
+    );
+    if (existRoom)
+      return {
+        success: true,
+        message: "200 Sala encontrada",
+        roomIs: existRoom.id,
+      };
+    const newRoom: Omit<Room, "id"> = {
+      createdAt: serverTimestamp(),
+      lastMessage: null,
+      participants: [friend.uid, user.uid],
+    };
+    // Tenemos el objeto, ahora hay que añadirlo a la colección
+    // addDoc me crea el documento y le adiciona un Id
+    const document = await addDoc(roomRef, newRoom);
+
+    return {
+      success: true,
+      message: "200 room successfully created",
+      roomIs: document.id,
+    };
+  };
+
+  return { rooms: rooms as Room[], findOrCreateRoom };
 };
