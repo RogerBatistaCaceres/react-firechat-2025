@@ -2,3 +2,7 @@ https://tailwindcss.com/
 
 // Para los componentes usamos la biblioteca
 https://ui.shadcn.com/
+
+
+Enlace a mi aplicación
+https://firechat-2025-1fd5b.web.app

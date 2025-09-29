@@ -10,7 +10,7 @@ import {
 import type { AuthError } from "firebase/auth";
 
 import { useState } from "react";
-import { useAuth, useUser } from "reactfire";
+import { useAuth } from "reactfire";
 import { useUserActions } from "./use-user-actions";
 
 interface AuthActionResponse {
