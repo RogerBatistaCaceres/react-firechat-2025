@@ -5,4 +5,8 @@ https://ui.shadcn.com/
 
 
 Enlace a mi aplicación
-https://firechat-2025-1fd5b.web.app
+https://firechat-2025-1fd5b.web.app/admin
+usuarios test1.test.com (123123)
+usuarios test2.test.com (123123)
+usuarios test3.test.com (123123)
+usuarios test4.test.com (123123)
